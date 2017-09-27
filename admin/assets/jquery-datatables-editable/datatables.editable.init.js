@@ -2,7 +2,7 @@
 * Theme: Montran Admin Template
 * Author: Coderthemes
 * Component: Editable
-* 
+*
 */
 
 (function( $ ) {
@@ -363,12 +363,9 @@
 					type:'post',
 					data:{'userID':objID,'page':page,'values':values.toArray()},
 					success:function(data){
-						console.log(data);
-						return false;
-
 						var j = $.parseJSON(data);
 						console.log('Notice:'+ j.notice);
-						console.log(data);
+						// console.log(data);
 
 						if(j.notice == "Success!"){
 							invalid = false;
@@ -376,12 +373,11 @@
 							invalid=true;
 							alertmsg = j.notice+' '+ j.msg;
 						}
-
 					},
 					async:false
 				});
 				console.log(invalid);
-				/*if(invalid){
+				if(invalid){
 
 					alert(alertmsg);
 
@@ -405,7 +401,7 @@
 
 					location.reload(true);
 
-				}*/
+				}
 			}
 		},
 
@@ -461,6 +457,3 @@
 
 
 }).apply( this, [ jQuery ]);
-
-
-

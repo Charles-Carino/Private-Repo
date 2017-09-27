@@ -8,7 +8,7 @@ $data = array(
     'table'=>strip_tags(trim($_POST['page'])),
     'values'=>$_POST['values']
 );
-print_r($data);
+// print_r($data);
 /*
 Array
 (
@@ -66,40 +66,29 @@ if(!empty($_POST)){
 
         //print_r($result);
         //check if username doesn't exists
-        //echo $result[0]['username'].'!='.$data['values'][3];
+        for($j = 1; $j <= $o->getTotalUsers($db);$j++){
+            $results = $o->getUser($db,$j);
 
-        echo $result[0]['username'] . '==' . $data['values'][3];
-
-        if ($result[0]['username'] == $data['values'][3]) {
-            $unameexists = true;
-
-        } else {
-
-            echo 'Sulod!';
-            //echo count($data['values']);
-            for ($i = 0; $i < count($data['values']) - 1; $i++) {
-                //check if stored password == array['password']
-                //if yes, retain the array['password']
-
-
+            if ($data['values'][3] == $results[0]['username']){
+                $unameexists = true;
+                break;
+            }
+            else {
+                //echo count($data['values']);
+                for ($i = 0; $i < count($data['values']) - 1; $i++) {
+                    //check if stored password == array['password']
+                    //if yes, retain the array['password']
                     if ($result[0]['password'] == $data['values'][4]) {
-                        break;
-                    } else {
                         $data['values'][4] = md5($data['values'][4]);
                     }
 
                     $unameexists = false;
 
-                    $newdata[$columns] = $data['values'][$i];
+                    $newdata[$columns[$i]] = $data['values'][$i];
                 }
             }
         }
-
-        echo "\n";
-        print_r($newdata);
-
         if ($unameexists) {
-            echo 'Pareha!';
             $result = 0;
         }
         else
@@ -110,7 +99,6 @@ if(!empty($_POST)){
         } else {
             $response = array('notice'=>'Warning!','msg' => "Username[ ".$data['values'][3]." ] already exist.");
         }
-
     }
     elseif($data['table'] == 'colleges.php'){
         $o = new Colleges();
@@ -119,7 +107,6 @@ if(!empty($_POST)){
     else{
         //$o = new Questions();
     }
-
-   //echo json_encode($response);
+    echo json_encode($response);
 }
 ?>
