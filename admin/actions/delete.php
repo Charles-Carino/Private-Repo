@@ -7,6 +7,7 @@ $data = array(
     'table'=>strip_tags(trim($_POST['page']))
 );
 
+
 if(!empty($_POST)){
     $user = new Users();
 

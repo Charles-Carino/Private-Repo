@@ -21,15 +21,15 @@ class Users{
         $tn = substr($t[0],0,strlen($t[0]) - 1);
 
         //update and store password from userID passed
-        $db->where('acctID',$id)->update($tn,$values);
-       // echo $db->where('acctID',$id)->update($tn,$values)->last_query();
+        $db->where('userID',$id)->update($tn,$values);
+       // echo $db->where('userID',$id)->update($tn,$values)->last_query();
         return $id;
     }
 
     function deleteUser($db,$id,$tablename){
         $t = explode('.',$tablename);//{'users','php'}
         $tn = substr($t[0],0,strlen($t[0]) - 1);
-        $db->delete("$tn")->where('acctID',$id)->execute();
+        $db->delete("$tn")->where('userID',$id)->execute();
 
         return $id;
     }
@@ -41,7 +41,9 @@ class Users{
 
     function getUser($db,$id){
 
-        return $db->select()->from('user')->where('acctID',$id)->fetch();
+        //echo $db->select()->from('user')->where('userID',$id)->last_query();
+        return $db->select()->from('user')->where('userID',$id)->fetch();
+
     }
 
     function getTotalUsers($db){
