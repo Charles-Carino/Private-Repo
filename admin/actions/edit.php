@@ -4,12 +4,10 @@ include '../../classes/Users.php';
 include '../../classes/Colleges.php';
 
 $data = array(
-    'id'=>strip_tags(trim($_POST['userID'])),
+    'id'=>strip_tags(trim($_POST['ID'])),
     'table'=>strip_tags(trim($_POST['page'])),
     'values'=>$_POST['values']
 );
-
-//print_r($data);
 
 
 //print_r($newdata);
@@ -22,11 +20,12 @@ if(!empty($_POST)){
         //getcurret password of the userid passed
         $result = $o->getUser($db,$data['id']);
 
+        print_r($data);
+        print_r($result);
+        die();
+
         $unameexists = false;
         $newdata = array();
-
-        //check if username doesn't exists
-        //echo $result[0]['username'].'!='.$data['values'][3];
         if($result[0]['username']!=$data['values'][3]){
             for($i = 0;$i < count($data['values'])-1;$i++){
                 //check if stored password == array['password']
