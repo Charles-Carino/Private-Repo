@@ -295,7 +295,7 @@
 					url:'actions/add.php',
 					postType:'json',
 					type:'post',
-					data:{'values':values.toArray()},
+					data:{'userID':objID,'page':page,'values':values.toArray()},
 					success:function(data){
 
 						var j = $.parseJSON(data);

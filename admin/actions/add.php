@@ -30,6 +30,7 @@ include '../../classes/Questions.php';
             } else {
                 $response = array('notice'=>'Warning!','msg' => "The username[ ".$data['values'][3]." ] already exists.");
             }
+            echo json_encode($response);
         }
         else if($data['table'] == 'colleges.php'){
             $college = new Colleges();
@@ -50,6 +51,7 @@ include '../../classes/Questions.php';
             } else {
                 $response = array('notice'=>'Warning!','msg' => "The college[ ".$data['values'][3]." ] already exists.");
             }
+            echo json_encode($response);
         }
         else if($data['table'] == 'questions.php'){
             $question = new Questions();
@@ -68,7 +70,8 @@ include '../../classes/Questions.php';
             } else {
                 $response = array('notice'=>'Warning!','msg' => "The question[ ".$data['values'][1]." ] already exists.");
             }
+            echo json_encode($response);
         }
-        echo json_encode($response);
+
     }
 ?>

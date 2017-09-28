@@ -34,7 +34,6 @@
                                 <table class="table table-bordered table-striped" id="datatable-editable">
                                     <thead>
                                         <tr>
-                                            <!--<th>College ID</th>-->
                                             <th>College Code</th>
                                             <th>College Name</th>
                                             <th>College About Info</th>
@@ -47,10 +46,8 @@
                                     <tbody>
                                       <?php
                                           foreach($result as $key){
-
                                       ?>
                                       <tr class="gradeX">
-                                        <!--<td><?=$key['collegeID']?></td>-->
                                         <td><?=$key['collegeCode']?></td>
                                         <td><?=$key['collegeName']?></td>
                                         <td><?=$key['collegeAboutInfo']?></td>
