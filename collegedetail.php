@@ -10,13 +10,6 @@ if(empty($_GET)){
 }else{
 
   $result = $c->getCollegedetail($db,$_GET['code']);
-//print_r($result);
-
-/*Array ( [0] => Array ( [collegeID] => 1 [collegeCode] => ca [collegeName] => College of Agriculture [collegeDesc] => The College of Agriculture emphasizes academic preparation with extensive community practice for leadership in rural Philippines. Courses are geared to understanding our society and to developing skills needed for making agricultural communities productive and financially viable. Silliman University College of Agriculture is an ACAP (Association of Colleges of Agriculture in the Philippines) charter member. The College offers degree programs in Bachelor of Science in Agriculture (majors in Animal Science and Agronomy), Bachelor of Science in Agricultural Business and Master in Applied Science (M.App.Sci.) in Systems Agriculture. The Bachelor of Science programs are PAASCU accredited (level II). Through a 10-year development program under the sponsorship of the International Development Program that ended in June 1994, a new thrust in learning and teaching agriculture was developed. The initial step was sending all the members of the faculty for either Special Study Program, Masteral or Ph.D. studies in Australia. The Alternative Approach, a new curricular approach that emphasizes experiential learning and systems thinking and practice is now being implemented at Silliman University College of Agriculture. The College of Agriculture utilizes an alternative approach to teaching and learning agriculture which emphasizes competency and issue-based learning. The competencies expected of a problem solver, and systems manager. It is envisioned that graduates with such competencies can cope with real world prob Federal Republic of Germany with a grant of $90,000. The College has modern lecture rooms and indoor laboratories for animal and plant sciences built in 1977 Another building unit composed of lecture rooms, a laboratory, a library and offices was built in 1980 through the joint support of the Evangelical Central Agency and the Coconut Federation of the Philippines (COCOFED). In addition, it has eight cottages for seniors and juniors constructed at a cost of P1.2 million donated by the COCOFED. [collegeDean] => Dean: Chona Fontelo Javier [collegeEmail] => Email: aggies@su.edu.ph [collegePhoneNumber] => Phone: 035 4225654 ) )
-COLLEGE OF AGRICULTURE
-About
-Degrees*/
-
 ?>
 
 <link href="css/agri-styles.css" rel="stylesheet">
@@ -55,9 +48,9 @@ Degrees*/
                 </div>
               </div>
               <div role="tabpanel" class="tab-pane" id="messages">
-                <i class="glyphicon glyphicon-user">Dean: Chona Fontelo Javier</i><br /><br />
-                <i class="glyphicon glyphicon-earphone">Phone: 035 4225654</i><br /><br />
-                <i class="glyphicon glyphicon-envelope">Email: aggies@su.edu.ph</i><br /><br />
+                <i class="glyphicon glyphicon-user"><?= $result[0]['collegeDean']?></i><br /><br />
+                <i class="glyphicon glyphicon-earphone"><?= $result[0]['collegePhoneNumber']?></i><br /><br />
+                <i class="glyphicon glyphicon-envelope"><?= $result[0]['collegeEmail']?></i><br /><br />
               </div>
             </div>
           </div>
