@@ -29,7 +29,6 @@ if(!empty($_POST)){
 
         $newdata = array();
 
-
         if(count($result)>0){
 
             //echo "naay kapareha ug uname\n";
@@ -59,7 +58,7 @@ if(!empty($_POST)){
                     $newdata['username'] = $data['values'][3];
                     $unameupdated = true;
                 }
-                //echo $result[0]['password'] .' != '.md5($data['values'][4]);
+
                 if ($result[0]['password'] != $data['values'][4]) {
                     $newdata['password'] = md5($data['values'][4]);
                     $upwupdated = true;

@@ -41,9 +41,10 @@ class Users{
 
     function getUser($db,$username){
         $where = array(
-            //'userID'=>$id,
+            //'userID'=>$id
             'username'=>$username
-        );
+        );//'username'=>$username
+
         //echo $db->select()->from('user')->where($where)->last_query();
         return $db->select()->from('user')->where($where)->fetch();
 

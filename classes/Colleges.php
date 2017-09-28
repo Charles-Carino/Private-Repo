@@ -22,7 +22,7 @@ class Colleges{
         */
 
         return $db->select('d.degreeID degreeID,c.collegeName collegeName,concat(c.collegeID,"-",c.collegeCode) collegeCode,
-        concat(d.degreeID,"-",d.degreeName) degreeName,d.degreeDesc,d.degreeJobs')->from('college c')->join('degree d','d.collegeID=c.collegeID')->order_by('collegeName asc, degreeName asc')->fetch();
+        concat(d.degreeID,"-",d.degreeDesc) degreeName,d.degreeDesc,d.degreeJobs')->from('college c')->join('degree d','d.collegeID=c.collegeID')->order_by('collegeName asc, degreeName asc')->fetch();
     }
 
     function getCollegeDetail($db,$collegeCode){

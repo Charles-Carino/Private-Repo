@@ -363,9 +363,8 @@
 					type:'post',
 					data:{'userID':objID,'page':page,'values':values.toArray()},
 					success:function(data){
+
 						var j = $.parseJSON(data);
-						//console.log('Notice:'+ j.notice);
-						// console.log(data);
 
 						if(j.notice == "Success!"){
 							invalid = false;
