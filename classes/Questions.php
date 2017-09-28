@@ -13,17 +13,6 @@ class Questions{
     }
 
     function getCollegeQuestionAnswerKeys($db){
-        /*
-        $db->select('*');
-        $db->from('blogs');
-        $db->join('comments', 'comments.id = blogs.id');
-
-        SELECT a.anskeyID,concat(c.collegeID,"-",c.collegeName) collegeName,concat(q.questionID,"-",q.questionText) questionName,a.answerKey anskey
-FROM answerkey a
-LEFT JOIN college c ON c.collegeID = a.collegeID
-LEFT JOIN question q ON q.questionID = a.questionID;
-        */
-
         return $db->select('a.anskeyID anskeyID,concat(c.collegeID,"-",c.collegeName) collegeName,q.questionID questionID,concat(q.questionID,"-",q.questionText) questionName,a.answerKey anskey')->from('answerkey a')->join('college c','c.collegeID = a.collegeID','left')->join('question q','q.questionID = a.questionID','left')->order_by('anskeyID asc,collegeName asc')->fetch();
     }
 
@@ -32,11 +21,11 @@ LEFT JOIN question q ON q.questionID = a.questionID;
         return $db->affected_rows;
     }
 
-    function addQuestion($db,$data,$tablename,$questionText){
+    function addQuestion($db,$data,$questionText){
 
-        $db->select()->from($tablename)->where('$questionText',$questionText)->execute();
+        $db->select()->from('question')->where('questionText',$questionText)->execute();
         if (($db->affected_rows)<1) {
-            $id = $db->insert($tablename,$data);//returns the last id inserted
+            $id = $db->insert('question',$data);//returns the last id inserted
         }else{
             $id = 0;
         }
@@ -58,4 +47,5 @@ LEFT JOIN question q ON q.questionID = a.questionID;
 
         return $id;
     }
+
 }

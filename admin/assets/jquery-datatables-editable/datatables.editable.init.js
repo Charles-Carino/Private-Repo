@@ -208,9 +208,7 @@
 				if ( $this.hasClass('actions') ) {
 					_self.rowSetActionsEditing( $row );
 				} else {
-
 					if(page=='users.php'){
-
 						/*if(i==0){
 							$this.html( '<input type="text" readonly class="form-control input-block" value="' + data[i] + '"/>' );
 						}else*/
@@ -226,6 +224,13 @@
 							$this.html( '<input type="text" class="form-control input-block" value="' + data[i] + '"/>' );
 						}
 					}
+					else if(page=='colleges.php')
+						$this.html( '<input type="text" class="form-control input-block" value="' + data[i] + '"/>' );
+					else if(page=='questions.php'){
+						if(i!=0){
+							$this.html( '<input type="text" class="form-control input-block" value="' + data[i] + '"/>' );
+						}
+					}
 				}
 			});
 		},
@@ -234,23 +239,6 @@
 			var _self     = this,
 				$actions,
 				values    = [];
-			/*values = $row.find('td').map(function() {
-				var $this = $(this);
-
-				if ( $this.hasClass('actions') ) {
-					_self.rowSetActionsDefault( $row );
-					return _self.datatable.cell( this ).data();
-				}
-				//else if($this.find('option:selected')){
-				//	console.log('selected:'+$this.find('option:selected'));
-				//	return $.trim($this.find('option:selected').val());
-				//}
-				else{
-					console.log('input:'+$this.find('input'));
-					return $.trim($this.find('input').val());
-				}
-			});*/
-
 			var hasAdding = $row.hasClass( 'adding' );
 
 			//Add user
@@ -260,7 +248,7 @@
 					_self.rowSetActionsEditing( $row );
 
 					//highlight username value
-					$row.find('input')[2].select();
+					//$row.find('input')[2].select();
 				//}
 
 				values = $row.find('td').map(function() {
@@ -278,28 +266,13 @@
 				var invalid = false;
 				var alertmsg = '';
 
-				/*$.post('actions/add.php',{'values':values.toArray()})
-				 .done(
-				 function(data){
-				 var j = $.parseJSON(data);
-				 console.log('Notice:'+j.notice);
-				 if(j.notice == "Success!"){
-				 invalid = false;
-				 }else{
-				 invalid=true;
-				 }
-				 }
-				 );*/
-
 				$.ajax({
 					url:'actions/add.php',
 					postType:'json',
 					type:'post',
-					data:{'values':values.toArray()},
+					data:{'userID':objID,'page':page,'values':values.toArray()},
 					success:function(data){
-
 						var j = $.parseJSON(data);
-						//console.log('Notice:'+j.notice);
 						if(j.notice == "Success!"){
 							invalid = false;
 						}else{
@@ -322,11 +295,6 @@
 						$row.find('input')[2].select();
 					}
 				}else{
-
-					/*if ( $row.hasClass( 'adding' ) ) {
-					 console.log('Has adding...');
-					 }*/
-
 					this.datatable.row( $row.get(0) ).data( values );
 
 					$actions = $row.find('td.actions');
@@ -419,16 +387,6 @@
 				success:function(data){
 
 					location.reload();
-
-					//console.log(data);
-					/*var j = $.parseJSON(data);
-					 //console.log('Notice:'+j.notice);
-					 if(j.notice == "Success!"){
-					 invalid = false;
-					 }else{
-					 invalid=true;
-					 alertmsg = j.notice+' '+ j.msg;
-					 }*/
 				},
 				async:false
 			});

@@ -24,23 +24,11 @@
                 <li>
                     <a href="index.php" class="waves-effect active"><i class="md md-home"></i><span> Dashboard </span></a>
                 </li>
-
-                <!--<li class="has_sub">
-                    <a href="#" class="waves-effect"><i class="md md-view-list"></i><span> Content Tables </span><span class="pull-right"><i class="md md-add"></i></span></a>
-                    <ul class="list-unstyled">
-                        <li><a href="users.php">Users</a></li>
-                        <li><a href="colleges.php">Colleges</a></li>
-                        <li><a href="collegedegrees.php">College Degrees</a></li>
-                        <li><a href="questions.php">Questions</a></li>
-                        <li><a href="answerkeys.php">Anwer Keys</a></li>
-                        <li><a href="assesments.php">Assesment Records</a></li>
-                    </ul>
-                </li>-->
                 <li><a href="users.php" class="waves-effect"><i class="md ion-android-social"></i>Users</a></li>
                 <li><a href="colleges.php" class="waves-effect"><i class="md md-school"></i>Colleges</a></li>
                 <li><a href="collegedegrees.php" class="waves-effect"><i class="md md-book"></i>College Degrees</a></li>
                 <li><a href="questions.php" class="waves-effect"><i class="md md-question-answer"></i>Questions</a></li>
-                <li><a href="answerkeys.php" class="waves-effect"><i class="md md-vpn-key"></i>Anwer Keys</a></li>
+                <li><a href="answerkeys.php" class="waves-effect"><i class="md md-vpn-key"></i>Answer Keys</a></li>
                 <li><a href="assesments.php" class="waves-effect"><i class="md md-view-list"></i>Assesment Records</a></li>
 
             </ul>

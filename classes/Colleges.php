@@ -34,11 +34,10 @@ class Colleges{
         return $db->affected_rows;
     }
 
-    function addCollege($db,$data,$tablename,$collegeCode){
-
-        $db->select()->from($tablename)->where('collegeCode',$collegeCode)->execute();
+    function addCollege($db,$data,$collegeCode){
+        $db->select()->from("college")->where('collegeCode',$collegeCode)->execute();
         if (($db->affected_rows)<1) {
-            $id = $db->insert($tablename,$data);//returns the last id inserted
+            $id = $db->insert("college",$data);//returns the last id inserted
         }else{
             $id = 0;
         }
