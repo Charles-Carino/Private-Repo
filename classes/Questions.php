@@ -24,7 +24,7 @@ LEFT JOIN college c ON c.collegeID = a.collegeID
 LEFT JOIN question q ON q.questionID = a.questionID;
         */
 
-        return $db->select('a.anskeyID anskeyID,concat(c.collegeID,"-",c.collegeName) collegeName,q.questionID questionID,concat(q.questionID,"-",q.questionText) questionName,a.answerKey anskey')->from('answerkey a')->join('college c','c.collegeID = a.collegeID','left')->join('question q','q.questionID = a.questionID','left')->order_by('anskeyID asc,collegeName asc')->fetch();
+        return $db->select('a.anskeyID anskeyID,concat(c.collegeID,"-",c.collegeName) collegeName,q.questionID questionID,concat(q.questionID,"-",q.questionText) questionName,a.answer anskey')->from('collegeanskey a')->join('college c','c.collegeID = a.collegeID','left')->join('question q','q.questionID = a.questionID','left')->order_by('anskeyID asc,collegeName asc')->fetch();
     }
 
     function getTotalQuestions($db){
