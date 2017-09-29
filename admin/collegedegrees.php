@@ -57,7 +57,7 @@ die();*/
                                       <tr class="gradeX">
                                         <td><?=$key['collegeName']?></td>
                                         <td><?=$key['collegeCode']?></td>
-                                        <td><?=$key["degreeName"]?></td>
+                                        <td><?=$key["degreeCode"]?></td>
                                         <td><?=$key["degreeDesc"]?></td>
                                         <td><?=$key["degreeJobs"]?></td>
                                         <td class="actions">

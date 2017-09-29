@@ -226,6 +226,16 @@
 							$this.html( '<input type="text" class="form-control input-block" value="' + data[i] + '"/>' );
 						}
 					}
+					else if(page=='colleges.php' || page=='collegedegrees.php'){
+						$this.html( '<input type="text" class="form-control input-block" value="' + data[i] + '"/>' );
+					}
+					else if(page=='questions.php'){
+						if(i!=0)
+							$this.html( '<input type="text" class="form-control input-block" value="' + data[i] + '"/>' );
+					}
+					/*else if(page=='collegedegrees.php'){
+						if(i==)
+					}*/
 				}
 			});
 		},
@@ -234,22 +244,6 @@
 			var _self     = this,
 				$actions,
 				values    = [];
-			/*values = $row.find('td').map(function() {
-				var $this = $(this);
-
-				if ( $this.hasClass('actions') ) {
-					_self.rowSetActionsDefault( $row );
-					return _self.datatable.cell( this ).data();
-				}
-				//else if($this.find('option:selected')){
-				//	console.log('selected:'+$this.find('option:selected'));
-				//	return $.trim($this.find('option:selected').val());
-				//}
-				else{
-					console.log('input:'+$this.find('input'));
-					return $.trim($this.find('input').val());
-				}
-			});*/
 
 			var hasAdding = $row.hasClass( 'adding' );
 
@@ -260,7 +254,7 @@
 					_self.rowSetActionsEditing( $row );
 
 					//highlight username value
-					$row.find('input')[2].select();
+					//$row.find('input')[2].select();
 				//}
 
 				values = $row.find('td').map(function() {

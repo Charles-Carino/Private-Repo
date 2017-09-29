@@ -59,7 +59,7 @@ if(!empty($_POST)){
                     $unameupdated = true;
                 }
 
-                if ($result[0]['password'] != $data['values'][4]) {
+                if ($result[0]['password'] !=   ($data['values'][4])) {
                     $newdata['password'] = md5($data['values'][4]);
                     $upwupdated = true;
                 }
@@ -75,9 +75,6 @@ if(!empty($_POST)){
             }
 
         }else{
-            //walay kapareha ug uname
-            //echo "walay kapareha ug uname\n";
-            //store values to newdata array
             for ($i = 0; $i < count($data['values']) - 1; $i++) {
                 $newdata[$columns[$i]] = $data['values'][$i];
 
