@@ -23,6 +23,7 @@ class Colleges{
     }
 
     function addCollege($db,$data,$collegeCode){
+        $data['collegeAboutInfo'] = nl2br($data['collegeAboutInfo']);
         $db->select()->from("college")->where('collegeCode',$collegeCode)->execute();
         if (($db->affected_rows)<1) {
             $id = $db->insert("college",$data);//returns the last id inserted
@@ -32,10 +33,10 @@ class Colleges{
         return $id;
     }
 
-    function editCollege($db,$id,$tablename){
+    function editCollege($db,$id,$tablename,$values){
         $t = explode('.',$tablename);//{'colleges','php'}
         $tn = substr($t[0],0,strlen($t[0]) - 1);
-        $db->delete("$tn")->where('collegeID',$id)->execute();
+        $db->where('collegeID',$id)->update($tn,$values);
 
         return $id;
     }

@@ -39,7 +39,7 @@ class Users{
         return $db->select()->from('user')->fetch();
     }
 
-    function getUser($db,$username){
+    function getUserbyUsername($db,$username){
         $where = array(
             //'userID'=>$id
             'username'=>$username

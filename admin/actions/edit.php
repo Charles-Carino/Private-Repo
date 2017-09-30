@@ -2,6 +2,7 @@
 require_once '../../config.php';
 include '../../classes/Users.php';
 include '../../classes/Colleges.php';
+include '../../classes/Questions.php';
 
 $data = array(
     'id'=>strip_tags(trim($_POST['userID'])),
@@ -20,7 +21,7 @@ if(!empty($_POST)){
         $columns = ['userType', 'firstName', 'lastName', 'username', 'password'];
 
         //getcurret password of the username passed
-        $result = $o->getUser($db,$data['values'][3]);//$data['id']
+        $result = $o->getUserbyUsername($db,$data['values'][3]);//$data['id']
 
         $unameexists = false;
         $selfrecord = false;
@@ -30,9 +31,6 @@ if(!empty($_POST)){
         $newdata = array();
 
         if(count($result)>0){
-
-            //echo "naay kapareha ug uname\n";
-
             $unameexists = true;
             $selfrecord = true;
 
@@ -89,12 +87,35 @@ if(!empty($_POST)){
         }
 
     }else if($data['table'] == 'colleges.php'){
-
         $o = new Colleges();
-        $result = $o->editCollege($db,$data['id'],$data['table']);
+        $columns = ['collegeCode', 'collegeName', 'collegeAboutInfo', 'collegeDean', 'collegeEmail', 'collegePhoneNumber'];
 
-    }else{
-        //$o = new Questions();
+        $result = $o->getCollegeDetail($db,$data['values'][0]);
+
+        $newData = array();
+
+        for ($i = 0; $i < count($data['values']) - 1; $i++) {
+            $newdata[$columns[$i]] = $data['values'][$i];
+        }
+
+        $result = $o->editCollege($db, $data['id'], $data['table'], $newdata);
+
+        $response = array('notice' => 'Success!','msg' => 'Record successfully updated.','lastid'=>$result);
+
+    }else if($data['table'] == 'questions.php'){
+        $o = new Questions();
+        $columns = ['questionText'];
+
+        $result = $o->getQuestionDetail($db,$data['id']);
+        $newData = array();
+
+        for ($i = 0; $i < count($data['values']) - 1; $i++) {
+            $newdata[$columns[$i]] = $data['values'][$i];
+        }
+
+        $result = $o->editQuestion($db, $data['id'], $data['table'], $newdata);
+
+        $response = array('notice' => 'Success!','msg' => 'Record successfully updated.','lastid'=>$result);
     }
 
     echo json_encode($response);

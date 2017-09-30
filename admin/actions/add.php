@@ -59,16 +59,14 @@ include '../../classes/Questions.php';
             $data['id'] = $totalQuestions;
 
             $questionData = array(
-                'questionID'=>strip_tags(trim($data['values'][0])),
-                'questionText'=>strip_tags(trim($data['values'][1])),
+                'questionText'=>strip_tags(trim($data['values'][0])),
             );
 
-            $result = $question->addQuestion($db,$questionData,$questionData['questionID']);
-
+            $result = $question->addQuestion($db,$questionData,$data['id']);
             if ($result>0) {
-                $response = array('notice' => 'Success!','msg'=> "Question[".$data['values'][1]."] added.",'lastid'=>$result);
+                $response = array('notice' => 'Success!','msg'=> "Question[".$data['values'][0]."] added.",'lastid'=>$result);
             } else {
-                $response = array('notice'=>'Warning!','msg' => "The question[ ".$data['values'][1]." ] already exists.");
+                $response = array('notice'=>'Warning!','msg' => "The question[ ".$data['values'][0]." ] already exists.");
             }
             echo json_encode($response);
         }

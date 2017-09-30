@@ -222,15 +222,18 @@
 						}else if(i==4){
 							$this.html( '<input type="password" class="form-control input-block" value="' + data[i] + '"/>' );
 						}
+						else if(i==5)
+							$this.html( '<input type="text" readonly class="form-control input-block" value="' + data[i] + '"/>' );
 						else{
 							$this.html( '<input type="text" class="form-control input-block" value="' + data[i] + '"/>' );
 						}
 					}
-					else if(page=='colleges.php' || page=='collegedegrees.php'){
-						$this.html( '<input type="text" class="form-control input-block" value="' + data[i] + '"/>' );
+					else if(page=='colleges.php'){
+							$this.html( '<textarea class="form-control input-block value="'+ data[i] +'">'+ data[i] +'</textarea>' );
 					}
+					else if(page=='collegedegrees.php')
+						$this.html( '<input type="text" class="form-control input-block" value="' + data[i] + '"/>' );
 					else if(page=='questions.php'){
-						if(i!=0)
 							$this.html( '<input type="text" class="form-control input-block" value="' + data[i] + '"/>' );
 					}
 					/*else if(page=='collegedegrees.php'){
@@ -357,7 +360,6 @@
 					type:'post',
 					data:{'userID':objID,'page':page,'values':values.toArray()},
 					success:function(data){
-
 						var j = $.parseJSON(data);
 
 						if(j.notice == "Success!"){
@@ -369,7 +371,7 @@
 					},
 					async:false
 				});
-				//console.log(invalid);
+				console.log(invalid);
 				if(invalid){
 
 					alert(alertmsg);
