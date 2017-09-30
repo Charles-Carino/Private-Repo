@@ -12,7 +12,7 @@ if (($db->affected_rows) > 0) {
     session_start();
     $result = $db->select()->from('user')->where('username', $data['username'])->fetch();
     $_SESSION['username'] = $result[0]['username'];
-    $_SESSION['type'] = $result[0]['acctType'];
+    $_SESSION['type'] = $result[0]['userType'];
     $_SESSION['firstname'] = $result[0]['firstName'];
     $_SESSION['lastname'] = $result[0]['lastName'];
 

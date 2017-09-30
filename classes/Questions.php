@@ -8,23 +8,12 @@ class Questions{
         return $db->select()->from('question')->fetch();
     }
 
-    function getQuestionDetail($db,$collegeCode){
-        //return $db->select()->from('college')->where('collegeCode',$collegeCode)->fetch();
+    function getQuestionDetail($db,$id){
+        return $db->select()->from('question')->where('questionID',$id)->fetch();
     }
 
     function getCollegeQuestionAnswerKeys($db){
-        /*
-        $db->select('*');
-        $db->from('blogs');
-        $db->join('comments', 'comments.id = blogs.id');
-
-        SELECT a.anskeyID,concat(c.collegeID,"-",c.collegeName) collegeName,concat(q.questionID,"-",q.questionText) questionName,a.answerKey anskey
-FROM answerkey a
-LEFT JOIN college c ON c.collegeID = a.collegeID
-LEFT JOIN question q ON q.questionID = a.questionID;
-        */
-
-        return $db->select('a.anskeyID anskeyID,concat(c.collegeID,"-",c.collegeName) collegeName,q.questionID questionID,concat(q.questionID,"-",q.questionText) questionName,a.answer anskey')->from('collegeanskey a')->join('college c','c.collegeID = a.collegeID','left')->join('question q','q.questionID = a.questionID','left')->order_by('anskeyID asc,collegeName asc')->fetch();
+      return $db->select('a.anskeyID anskeyID,concat(c.collegeID,"-",c.collegeName) collegeName,q.questionID questionID,concat(q.questionID,"-",q.questionText) questionName,a.answer answer')->from('collegeanskey a')->join('college c','c.collegeID = a.collegeID','left')->join('question q','q.questionID = a.questionID','left')->order_by('anskeyID asc,collegeName asc')->fetch();
     }
 
     function getTotalQuestions($db){
@@ -32,21 +21,21 @@ LEFT JOIN question q ON q.questionID = a.questionID;
         return $db->affected_rows;
     }
 
-    function addQuestion($db,$data,$tablename,$questionText){
+    function addQuestion($db,$data,$questionText){
 
-        $db->select()->from($tablename)->where('$questionText',$questionText)->execute();
+        $db->select()->from('question')->where('questionText',$questionText)->execute();
         if (($db->affected_rows)<1) {
-            $id = $db->insert($tablename,$data);//returns the last id inserted
+            $id = $db->insert('question',$data);//returns the last id inserted
         }else{
             $id = 0;
         }
         return $id;
     }
 
-    function editQuestion($db,$id,$tablename){
+    function editQuestion($db,$id,$tablename,$values){
         $t = explode('.',$tablename);//{'questions','php'}
         $tn = substr($t[0],0,strlen($t[0]) - 1);
-        $db->update("$tn")->where('questionID',$id)->execute();
+        $db->where('questionID',$id)->update($tn,$values);
 
         return $id;
     }
@@ -58,4 +47,5 @@ LEFT JOIN question q ON q.questionID = a.questionID;
 
         return $id;
     }
+
 }

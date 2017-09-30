@@ -222,10 +222,23 @@
 						}else if(i==4){
 							$this.html( '<input type="password" class="form-control input-block" value="' + data[i] + '"/>' );
 						}
+						else if(i==5)
+							$this.html( '<input type="text" readonly class="form-control input-block" value="' + data[i] + '"/>' );
 						else{
 							$this.html( '<input type="text" class="form-control input-block" value="' + data[i] + '"/>' );
 						}
 					}
+					else if(page=='colleges.php'){
+							$this.html( '<textarea class="form-control input-block value="'+ data[i] +'">'+ data[i] +'</textarea>' );
+					}
+					else if(page=='collegedegrees.php')
+						$this.html( '<input type="text" class="form-control input-block" value="' + data[i] + '"/>' );
+					else if(page=='questions.php'){
+							$this.html( '<input type="text" class="form-control input-block" value="' + data[i] + '"/>' );
+					}
+					/*else if(page=='collegedegrees.php'){
+						if(i==)
+					}*/
 				}
 			});
 		},
@@ -234,22 +247,6 @@
 			var _self     = this,
 				$actions,
 				values    = [];
-			/*values = $row.find('td').map(function() {
-				var $this = $(this);
-
-				if ( $this.hasClass('actions') ) {
-					_self.rowSetActionsDefault( $row );
-					return _self.datatable.cell( this ).data();
-				}
-				//else if($this.find('option:selected')){
-				//	console.log('selected:'+$this.find('option:selected'));
-				//	return $.trim($this.find('option:selected').val());
-				//}
-				else{
-					console.log('input:'+$this.find('input'));
-					return $.trim($this.find('input').val());
-				}
-			});*/
 
 			var hasAdding = $row.hasClass( 'adding' );
 
@@ -260,7 +257,7 @@
 					_self.rowSetActionsEditing( $row );
 
 					//highlight username value
-					$row.find('input')[2].select();
+					//$row.find('input')[2].select();
 				//}
 
 				values = $row.find('td').map(function() {
@@ -295,7 +292,7 @@
 					url:'actions/add.php',
 					postType:'json',
 					type:'post',
-					data:{'values':values.toArray()},
+					data:{'userID':objID,'page':page,'values':values.toArray()},
 					success:function(data){
 
 						var j = $.parseJSON(data);

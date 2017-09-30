@@ -49,7 +49,7 @@ $result = $qa->getCollegeQuestionAnswerKeys($db);
                             <tr class="gradeX">
                                 <td><?=$key['collegeName']?></td>
                                 <td><?=$key['questionName']?></td>
-                                <td><?=$key['anskey']?></td>
+                                <td><?=$key['answer']?></td>
                                 <td class="actions">
                                     <a href="#" data-rel="<?=$key['anskeyID']?>" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                     <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
