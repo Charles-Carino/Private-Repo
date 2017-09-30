@@ -9,7 +9,7 @@ class Colleges{
     }
 
     function getCollegeDegrees($db){
-        return $db->select('d.degreeID degreeID,c.collegeName collegeName,concat(c.collegeID,"-",c.collegeCode) collegeCode,
+        return $db->select('d.degreeID degreeID,c.collegeName collegeName,concat(c.collegeID,"-",c.collegeCode) collegeCode, 
         concat(d.degreeID,"-",d.degreeCode) degreeCode,d.degreeDesc,d.degreeJobs')->from('college c')->join('degree d','d.collegeID=c.collegeID')->order_by('collegeName asc, degreeCode asc')->fetch();
     }
 

@@ -360,6 +360,7 @@
 					type:'post',
 					data:{'userID':objID,'page':page,'values':values.toArray()},
 					success:function(data){
+
 						var j = $.parseJSON(data);
 
 						if(j.notice == "Success!"){
@@ -371,7 +372,7 @@
 					},
 					async:false
 				});
-				console.log(invalid);
+				//console.log(invalid);
 				if(invalid){
 
 					alert(alertmsg);

@@ -19,9 +19,7 @@ if(!empty($_POST)){
         $o = new Users();
 
         $columns = ['userType', 'firstName', 'lastName', 'username', 'password'];
-
-        //getcurret password of the username passed
-        $result = $o->getUserbyUsername($db,$data['values'][3]);//$data['id']
+         $result = $o->getUserbyUsername($db,$data['values'][3]);//$data['id']
 
         $unameexists = false;
         $selfrecord = false;
@@ -33,9 +31,6 @@ if(!empty($_POST)){
         if(count($result)>0){
             $unameexists = true;
             $selfrecord = true;
-
-            //echo 'Data fetch: '.$result[0]['userID']." == ".' Data pass: '.$data['id'];
-            //compare username
             if($result[0]['userID'] == $data['id']){
                 $selfrecord = true;
             }else{
@@ -56,8 +51,7 @@ if(!empty($_POST)){
                     $newdata['username'] = $data['values'][3];
                     $unameupdated = true;
                 }
-
-                if ($result[0]['password'] !=   ($data['values'][4])) {
+                if ($result[0]['password'] != $data['values'][4]) {
                     $newdata['password'] = md5($data['values'][4]);
                     $upwupdated = true;
                 }
@@ -71,8 +65,7 @@ if(!empty($_POST)){
                 $response = array('notice' => 'Warning!','msg' => "Username [".$data['values'][3]."] already exists.");
 
             }
-
-        }else{
+          }else{
             for ($i = 0; $i < count($data['values']) - 1; $i++) {
                 $newdata[$columns[$i]] = $data['values'][$i];
 
