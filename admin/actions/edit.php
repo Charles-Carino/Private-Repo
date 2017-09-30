@@ -18,7 +18,7 @@ if(!empty($_POST)){
     if($data['table'] == 'users.php') {
         $o = new Users();
 
-        $columns = ['userType', 'firstName', 'lastName', 'username', 'password'];
+        $columns = ['userType', 'firstName', 'lastName', 'username', 'password','resultCollege'];
          $result = $o->getUserbyUsername($db,$data['values'][3]);//$data['id']
 
         $unameexists = false;
