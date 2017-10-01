@@ -12,10 +12,6 @@ class Questions{
         return $db->select()->from('question')->where('questionID',$id)->fetch();
     }
 
-    function getCollegeQuestionAnswerKeys($db){
-      return $db->select('a.anskeyID anskeyID,concat(c.collegeID,"-",c.collegeName) collegeName,q.questionID questionID,concat(q.questionID,"-",q.questionText) questionName,a.answer answer')->from('collegeanskey a')->join('college c','c.collegeID = a.collegeID','left')->join('question q','q.questionID = a.questionID','left')->order_by('anskeyID asc,collegeName asc')->fetch();
-    }
-
     function getTotalQuestions($db){
         $db->select()->from('question')->execute();
         return $db->affected_rows;

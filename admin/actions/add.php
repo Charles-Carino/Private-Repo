@@ -3,6 +3,7 @@ require_once '../../config.php';
 include '../../classes/Users.php';
 include '../../classes/Colleges.php';
 include '../../classes/Questions.php';
+include '../../classes/Degrees.php';
     $data = array(
         'table'=>strip_tags(trim($_POST['page'])),
         'values'=>$_POST['values']
@@ -67,6 +68,25 @@ include '../../classes/Questions.php';
                 $response = array('notice' => 'Success!','msg'=> "Question[".$data['values'][0]."] added.",'lastid'=>$result);
             } else {
                 $response = array('notice'=>'Warning!','msg' => "The question[ ".$data['values'][0]." ] already exists.");
+            }
+            echo json_encode($response);
+        }
+        else if($data['table'] == 'collegedegrees.php'){
+            $degree = new Degrees();
+            $totalDegrees = $degree->getTotalDegrees($db);
+            $collegeID = explode('-',$data['values'][0]);
+            $degreeData = array(
+                'collegeID' => $collegeID[0],
+                'degreeCode'=>strip_tags(trim($data['values'][2])),
+                'degreeDesc'=>strip_tags(trim($data['values'][3])),
+                'degreeJobs'=>nl2br(strip_tags(trim($data['values'][4]))),
+            );
+
+            $result = $degree->addDegree($db,$degreeData);
+            if ($result>0) {
+                $response = array('notice' => 'Success!','msg'=> "Degree[".$data['values'][2]."] added.",'lastid'=>$result);
+            } else {
+                $response = array('notice'=>'Warning!','msg' => "The degree[ ".$data['values'][2]." ] already exists.");
             }
             echo json_encode($response);
         }

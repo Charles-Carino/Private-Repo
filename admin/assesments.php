@@ -2,7 +2,7 @@
 include 'header.php';
 include '../classes/ResultTables.php';
 $r = new ResultTables();
-$result = $r->getResultTables($db);
+$result = $r->getResultsTable($db);
 ?>
 
 <!-- ============================================================== -->
@@ -26,19 +26,17 @@ $result = $r->getResultTables($db);
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="m-b-30">
-                                <button id="addToTable" class="btn btn-primary waves-effect waves-light">Add <i class="fa fa-plus"></i></button>
-                            </div>
                         </div>
                     </div>
 
                     <table class="table table-bordered table-striped" id="datatable-editable">
                         <thead>
                         <tr>
-                            <th>User ID</th>
-                            <th>Question ID</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>User Name</th>
+                            <th>Question</th>
                             <th>Answer</th>
-                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -47,15 +45,11 @@ $result = $r->getResultTables($db);
                         foreach($result as $key){
                             ?>
                             <tr class="gradeX">
-                                <td><?=$key['userID']?></td>
-                                <td><?=$key['questionID']?></td>
+                                <td><?=$key['id']?></td>
+                                <td><?=$key['uName']?></td>
+                                <td><?=$key['userName']?></td>
+                                <td><?=$key['question']?></td>
                                 <td><?=$key['answer']?></td>
-                                <td class="actions">
-                                    <a href="#" data-rel="<?=$key['resultTableID']?>" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                    <a href="#" data-rel="<?=$key['resultTableID']?>" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                    <a href="#" data-rel="<?=$key['resultTableID']?>" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                </td>
                             </tr>
                             <?php
                         }

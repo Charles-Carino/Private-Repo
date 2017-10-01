@@ -3,16 +3,14 @@ require_once '../../config.php';
 include '../../classes/Users.php';
 include '../../classes/Colleges.php';
 include '../../classes/Questions.php';
+include '../../classes/Degrees.php';
+include '../../classes/AnswerKeys.php';
 
 $data = array(
-    'id'=>strip_tags(trim($_POST['userID'])),
+    'id'=>strip_tags(trim($_POST['ID'])),
     'table'=>strip_tags(trim($_POST['page'])),
     'values'=>$_POST['values']
 );
-
-//print_r($data);
-
-
 if(!empty($_POST)){
 
     if($data['table'] == 'users.php') {
@@ -73,7 +71,6 @@ if(!empty($_POST)){
                     $newdata[$columns[$i]] = md5($data['values'][$i]);
                 }
             }
-            //print_r($newdata);
 
             $result = $o->editUser($db, $data['id'], $data['table'], $newdata);
             $response = array('notice' => 'Success!','msg' => 'Record successfully updated.','lastid'=>$result);
@@ -88,8 +85,12 @@ if(!empty($_POST)){
         $newData = array();
 
         for ($i = 0; $i < count($data['values']) - 1; $i++) {
-            $newdata[$columns[$i]] = $data['values'][$i];
+            if($i == 2)
+                $newdata[$columns[$i]] = nl2br($data['values'][$i]);
+            else
+                $newdata[$columns[$i]] = $data['values'][$i];
         }
+
 
         $result = $o->editCollege($db, $data['id'], $data['table'], $newdata);
 
@@ -109,8 +110,40 @@ if(!empty($_POST)){
         $result = $o->editQuestion($db, $data['id'], $data['table'], $newdata);
 
         $response = array('notice' => 'Success!','msg' => 'Record successfully updated.','lastid'=>$result);
-    }
+    }else if($data['table'] == 'collegedegrees.php'){
+        $o = new Degrees();
+        $columns = ['degreeCode','degreeDesc','degreeJobs'];
+        print_r($data);
 
+        $result = $o->getDegreeDetail($db,$data['id']);
+        $newData = array();
+        for ($i = 0; $i < count($data['values']) - 1; $i++) {
+            if($i < 2)
+                continue;
+            else
+                $newData[$columns[$i-2]] = $data['values'][$i];
+        }
+        $result = $o->editDegree($db, $data['id'], $newData);
+
+        $response = array('notice' => 'Success!','msg' => 'Record successfully updated.','lastid'=>$result);
+    }else if($data['table'] == 'answerkeys.php'){
+        $o = new AnswerKeys();
+        $columns = ['collegeID','questionID','answer'];
+        print_r($data);
+
+        $result = $o->getDegreeDetail($db,$data['id']);
+        $newData = array();
+        // for ($i = 0; $i < count($data['values']) - 1; $i++) {
+        //     if($i < 2)
+        //         continue;
+        //     else
+        //         $newData[$columns[$i-2]] = $data['values'][$i];
+        // }
+
+        $result = $o->editDegree($db, $data['id'], $newData);
+
+        $response = array('notice' => 'Success!','msg' => 'Record successfully updated.','lastid'=>$result);
+    }
     echo json_encode($response);
 }
 ?>
