@@ -21,6 +21,8 @@ var resultOptions = [
     }
 ];
 var quizSteps = $('#quizzie .quiz-step'), totalScore = 0;
+var tempResultTable = [];
+var i = 0;
 quizSteps.each(function () {
     var currentStep = $(this), ansOpts = currentStep.children('.quiz-answer');
     ansOpts.each(function () {
@@ -28,16 +30,36 @@ quizSteps.each(function () {
         eachOpt[0].addEventListener('click', check, false);
         function check() {
             var $this = $(this), value = $this.attr('data-quizIndex'), answerScore = parseInt(value);
+            //for(i = 0;i < 10;i++){
+                tempResultTable[i] = value[0];
+                // console.log(tempResultTable[i]);
+                i+=1;
+                 //console.log(tempResultTable);
+            //}
+            // .done(function() {
+            //     console.log("success");
+            // })
+            // .fail(function() {
+            //     console.log("error");
+            // })
+            // .always(function() {
+            //     console.log("complete");
+            // });
+            //console.log(currentStep.children('.active').length);
             if (currentStep.children('.active').length > 0) {
                 var wasActive = currentStep.children('.active'), oldScoreValue = wasActive.attr('data-quizIndex'), oldScore = parseInt(oldScoreValue);
                 currentStep.children('.active').removeClass('active');
                 $this.addClass('active');
                 totalScore -= oldScoreValue;
                 totalScore += answerScore;
+                console.log(answerScore);
+                console.log(totalScore);
                 calcResults(totalScore);
             } else {
                 $this.addClass('active');
                 totalScore += answerScore;
+                console.log(answerScore);
+                console.log(totalScore);
                 calcResults(totalScore);
                 updateStep(currentStep);
             }
@@ -51,7 +73,10 @@ function updateStep(currentStep) {
     }
 }
 function calcResults(totalScore) {
+    // console.log(quizSteps.find('.active').length);
+    // console.log(quizSteps.length);
     if (quizSteps.find('.active').length == quizSteps.length) {
+        // console.log('Went In');
         var resultsTitle = $('#results h1'), resultsDesc = $('#results .desc');
         var lowestScoreArray = $('#quizzie .low-value').map(function () {
             return $(this).attr('data-quizIndex');
@@ -63,7 +88,6 @@ function calcResults(totalScore) {
             }
             minScore += lowestScoreArray[i] << 0;
         }
-
         var highestScoreArray = $('#quizzie .high-value').map(function () {
             return $(this).attr('data-quizIndex');
         });
@@ -80,6 +104,11 @@ function calcResults(totalScore) {
             if (totalScore <= increment) {
                 resultsTitle.replaceWith('<h1>' + resultOptions[n].title + '</h1>');
                 resultsDesc.replaceWith('<p class=\'desc\'>' + resultOptions[n].desc + '</p>');
+                    console.log(increment);
+                    console.log(totalScore);
+                    console.log(lowestScoreArray);
+                    console.log(highestScoreArray);
+                    console.log(tempResultTable);
                 return;
             } else {
                 n++;

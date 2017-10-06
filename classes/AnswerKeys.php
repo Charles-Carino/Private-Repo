@@ -8,6 +8,11 @@ class AnswerKeys{
         return $db->select()->from('collegeanskey')->fetch();
     }
 
+    function getTotalAnswerKeys($db){
+        $db->select()->from('collegeanskey')->execute();
+        return $db->affected_rows;
+    }
+
     function getCollegeQuestionAnswerKeys($db){
       return $db->select('a.anskeyID anskeyID,c.collegeName collegeName,q.questionID questionID,q.questionText questionName,a.answer answer')
       ->from('collegeanskey a')->join('college c','c.collegeID = a.collegeID','left')->join('question q','q.questionID = a.questionID','left')
@@ -38,5 +43,9 @@ class AnswerKeys{
 
     function getAnswerKey($db,$id){
         return $db->select()->from('collegeanskey')->where('ansKeyID',$id)->fetch();
+    }
+
+    function getCollegeAnsKey($db,$id){
+        return $db->select()->from('collegeanskey')->where('collegeID',$id)->order_by('questionID asc,collegeID asc')->fetch();
     }
 }

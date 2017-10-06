@@ -3,6 +3,8 @@
   require '../classes/Colleges.php';
   require '../classes/Degrees.php';
   require '../classes/Questions.php';
+  require '../classes/AnswerKeys.php';
+  require '../classes/ResultTables.php';
   require '../config.php';
 
 
@@ -14,6 +16,10 @@
   $degreeCount = $countDegree->getTotalDegrees($db);
   $countquestion = new Questions();
   $questionCount = $countquestion->getTotalQuestions($db);
+  $countAnswerKey = new AnswerKeys();
+  $answerKeyCount = $countAnswerKey->getTotalAnswerKeys($db);
+  $countResultTable = new ResultTables();
+  $resultTableCount = $countResultTable->getTotalResultTables($db);
   include 'header.php';
 ?>
 
@@ -60,6 +66,24 @@
                                     <div class="mini-stat-info text-right text-muted">
                                         <?php echo '<span class="counter">'.$questionCount.'</span>';?>
                                         Question Count
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-lg-3">
+                                <div class="mini-stat clearfix bx-shadow">
+                                    <span class="mini-stat-icon bg-primary"><i class="md md-vpn-key"></i></span>
+                                    <div class="mini-stat-info text-right text-muted">
+                                        <?php echo '<span class="counter">'.$answerKeyCount.'</span>';?>
+                                        Answer Key Count
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-lg-3">
+                                <div class="mini-stat clearfix bx-shadow">
+                                    <span class="mini-stat-icon bg-warning"><i class="md md-view-list"></i></span>
+                                    <div class="mini-stat-info text-right text-muted">
+                                        <?php echo '<span class="counter">'.$resultTableCount.'</span>';?>
+                                        Results Count
                                     </div>
                                 </div>
                             </div>
