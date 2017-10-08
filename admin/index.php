@@ -33,7 +33,7 @@
 
                         <!-- Start Widget -->
                         <div class="row">
-                            <div class="col-md-6 col-sm-6 col-lg-3">
+                            <div class="col-md-6 col-sm-6 col-lg-2">
                                 <div class="mini-stat clearfix bx-shadow">
                                     <span class="mini-stat-icon bg-primary"><i class="ion-android-contacts"></i></span>
                                     <div class="mini-stat-info text-right text-muted">
@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-lg-3">
+                            <div class="col-md-6 col-sm-6 col-lg-2">
                                 <div class="mini-stat clearfix bx-shadow">
                                     <span class="mini-stat-icon bg-warning"><i class="md md-school"></i></span>
                                     <div class="mini-stat-info text-right text-muted">
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-lg-3">
+                            <div class="col-md-6 col-sm-6 col-lg-2">
                                 <div class="mini-stat clearfix bx-shadow">
                                     <span class="mini-stat-icon bg-pink"><i class="md md-book"></i></span>
                                     <div class="mini-stat-info text-right text-muted">
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-lg-3">
+                            <div class="col-md-6 col-sm-6 col-lg-2">
                                 <div class="mini-stat clearfix bx-shadow">
                                     <span class="mini-stat-icon bg-success"><i class="md md-question-answer"></i></span>
                                     <div class="mini-stat-info text-right text-muted">
@@ -69,7 +69,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-lg-3">
+                            <div class="col-md-6 col-sm-6 col-lg-2">
                                 <div class="mini-stat clearfix bx-shadow">
                                     <span class="mini-stat-icon bg-primary"><i class="md md-vpn-key"></i></span>
                                     <div class="mini-stat-info text-right text-muted">
@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-lg-3">
+                            <div class="col-md-6 col-sm-6 col-lg-2">
                                 <div class="mini-stat clearfix bx-shadow">
                                     <span class="mini-stat-icon bg-warning"><i class="md md-view-list"></i></span>
                                     <div class="mini-stat-info text-right text-muted">
@@ -91,13 +91,13 @@
                         <!-- End row-->
 
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="panel panel-border panel-primary">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Bar chart</h3>
                                     </div>
                                     <div class="panel-body">
-                                        <canvas id="bar" data-type="Bar" height="250" width="800" ></canvas>
+                                        <canvas id="bar" data-type="Bar"></canvas>
                                     </div>
                                 </div>
                             </div>

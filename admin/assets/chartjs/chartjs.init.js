@@ -37,19 +37,21 @@
     //init
     ChartJs.prototype.init = function() {
         //barchart
+        var colleges = ["COA","CAS","CBA","CCS","CE","CED","MassCom","CN","COPVA","DI","ICLS","IRS","SPAG"];
+        var resultspercollege = [65,59,90,81,56,55,40,59,90,81,56,55,40];
         var data3 = {
-            labels : ["COA","CAS","CBA","CCS","CE","CED","MassCom","CN","COPVA","DI","ICLS","IRS","SPAG"],
+            labels : colleges,
                     datasets : [
                         {
                             fillColor : "#317eeb",
                             strokeColor : "#317eeb",
-                            data : [65,59,90,81,56,55,40,59,90,81,56,55,40]
-                        },
+                            data : resultspercollege
+                        }/*,
                         {
                             fillColor : "#dcdcdc",
                             strokeColor : "#dcdcdc",
                             data : [28,48,40,19,96,27,100,48,40,19,96,27,100]
-                        }
+                        }*/
                     ]
         }
         this.respChart($("#bar"),'Bar',data3);
