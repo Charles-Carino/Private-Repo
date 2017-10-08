@@ -41,11 +41,8 @@ class Users{
 
     function getUserbyUsername($db,$username){
         $where = array(
-            //'userID'=>$id
             'username'=>$username
         );//'username'=>$username
-
-        //echo $db->select()->from('user')->where($where)->last_query();
         return $db->select()->from('user')->where($where)->fetch();
     }
 
@@ -54,7 +51,10 @@ class Users{
         return $db->affected_rows;
     }
 
-    function InsertResults($db,$id,$str){
-        $db->where('userID',$id)->update('resultCollege',$str);
+    function UpdateResults($db,$id,$str){
+        $value = array(
+            'resultCollege' => $str
+        );
+        $db->where('userID',$id)->update('user',$value);
     }
 }

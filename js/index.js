@@ -119,23 +119,18 @@ function calcResults(totalScore) {
                         // console.log(JSONstr);
                         // console.log(maxArray);
                         // console.log(finalMax);
-                        // console.log(tempResultTable);
+                        console.log(tempResultTable);
                         var JSONstr = JSON.stringify(finalMax);
                         $.ajax({
-                            url: '../actions/addingRecords.php',
+                            url: 'actions/addingRecords.php',
                             type: 'post',
                             dataType: 'json',
-                            data: {'recCollege': JSONstr},
+                            data: {'recCollege': JSONstr,'tempResultTable':JSON.stringify(tempResultTable)},
                             success:function(data){
-                                // var collegeStr = $.parseJSON(data);
-                                console.log(data[0]['recCollege']);
-                                 resultsDesc.replaceWith('<h1>' + data[0]['recCollege'] + '</h1>');
+                                resultsDesc.replaceWith('<h1>' + data[0]['recCollege'] + '</h1>');
                                 //  resultsDesc.replaceWith('<p class=\'desc\'>' + resultOptions[n].desc + '</p>');
                             }
-                        })
-                        //
-                        // $.post("../actions/addingRecords.php",{json:JSONstr},{
-                        // });
+                        });
                     }
                 });
                 return;

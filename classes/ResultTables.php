@@ -18,4 +18,28 @@ class ResultTables{
         return $db->affected_rows;
     }
 
+    function getAnswers($db,$id){
+        $db->select('answer')->from('resulttable')->where('userID',$id)->execute();
+        return $db->affected_rows;
+    }
+
+    function insertResults($db,$userID,$questionID,$answer){
+        $values = array(
+            'userID' => $userID,
+            'questionID' => $questionID,
+            'answer' => $answer
+        );
+        $db->insert('resulttable',$values);
+    }
+
+    function updateResults($db,$userID,$questionID,$answer){
+        $where = array(
+            'userID' => $userID,
+            'questionID' => $questionID
+        );
+        $values = array(
+            'answer' => $answer
+        );
+        $db->where($where)->update('resulttable',$values);
+    }
 }
