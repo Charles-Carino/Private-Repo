@@ -38,7 +38,7 @@ class Users{
 
         return $db->select()->from('user')->fetch();
     }
-  
+
     function getUserbyUsername($db,$username){
         $where = array(
             //'userID'=>$id
@@ -52,5 +52,9 @@ class Users{
     function getTotalUsers($db){
         $db->select()->from('user')->execute();
         return $db->affected_rows;
+    }
+
+    function InsertResults($db,$id,$str){
+        $db->where('userID',$id)->update('resultCollege',$str);
     }
 }

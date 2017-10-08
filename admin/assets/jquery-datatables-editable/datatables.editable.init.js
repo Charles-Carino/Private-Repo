@@ -15,12 +15,6 @@
 
 
 	'use strict';
-	//
-	// if(arr[arr.length-1]=='users.php'){
-	// 	var tablecol = [null, null, null, null, null,null, { "bSortable": false }]; //6
-	// }else if(arr[arr.length-1]=='colleges.php'){
-	// 	var tablecol = [null, null, null, null, { "bSortable": false }]; //5
-	// }
 
 	var EditableTable = {
 
