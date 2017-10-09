@@ -44,7 +44,7 @@
             url: 'actions/drawGraph.php',
             dataType: 'json',
             success: function(data){
-                console.log(data.colleges);
+                // console.log(data.colleges);
                 colleges = data.colleges;
             },
             async:false

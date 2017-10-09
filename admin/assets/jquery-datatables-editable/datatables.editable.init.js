@@ -12,7 +12,11 @@
 	var arr = pageURL.split('/');
 	//console.log(arr[arr.length-1]);
 	var page = arr[arr.length-1];
+	var urlString = window.location;
 
+	// if(page == 'index.php'){
+		$('a[href="' + page + '"]').addClass("active");
+	// }
 
 	'use strict';
 
