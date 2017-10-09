@@ -3,13 +3,6 @@ require_once '../../config.php';
 include '../../classes/Colleges.php';
 include '../../classes/Users.php';
 
-/*$c = new Colleges();
-$result = $c->getColleges($db);
-$data = array();
-foreach($result as $values){
-    $data['colleges'][] = $values['collegeCode'];
-}*/
-
 
 $u=new Users();
 $result = $u->getUsers($db);
@@ -33,6 +26,7 @@ foreach($result as $values){
 }
 
 $newarr = array_count_values( $data['colleges']);
+
 echo json_encode($newarr,JSON_FORCE_OBJECT);
 
 
