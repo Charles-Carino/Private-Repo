@@ -36,9 +36,21 @@
     },
     //init
     ChartJs.prototype.init = function() {
+
         //barchart
-        var colleges = ["COA","CAS","CBA","CCS","CE","CED","MassCom","CN","COPVA","DI","ICLS","IRS","SPAG"];
-        var resultspercollege = [65,59,90,81,56,55,40,59,90,81,56,55,40];
+        var colleges;
+        $.ajax({
+            type: "POST",
+            url: 'actions/drawGraph.php',
+            dataType: 'json',
+            success: function(data){
+                console.log(data.colleges);
+                colleges = data.colleges;
+            },
+            async:false
+        });
+
+        var resultspercollege = [5,9,9,8,5,5];
         var data3 = {
             labels : colleges,
                     datasets : [
@@ -52,7 +64,16 @@
                             strokeColor : "#dcdcdc",
                             data : [28,48,40,19,96,27,100,48,40,19,96,27,100]
                         }*/
-                    ]
+                    ],
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
         }
         this.respChart($("#bar"),'Bar',data3);
     },
