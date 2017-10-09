@@ -50,15 +50,15 @@ class Colleges{
     }
 
     function concatResults($db,$collegeFetch){
-        $sql = "SELECT GROUP_CONCAT(collegeCode SEPARATOR ', ') AS recCollege
+        $sql = "SELECT GROUP_CONCAT(collegeCode SEPARATOR ',') AS recCollege
          FROM college
          WHERE collegeID IN ($collegeFetch)";
-        
+
         return $db->query($sql)->fetch();
     }
 
     function getCollegeNames($db,$collegeFetch){
-        $sql = "SELECT GROUP_CONCAT(collegeName SEPARATOR ', ') AS recCollege
+        $sql = "SELECT GROUP_CONCAT(collegeName SEPARATOR ',') AS recCollege
         FROM college
         WHERE collegeID IN ($collegeFetch)";
 
