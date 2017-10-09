@@ -15,16 +15,14 @@ foreach($result as $values){
     if(!empty($arr)){
         foreach($arr as $val){
             //if(!in_array($val,$data['colleges']))
-                $data['colleges'][] = $val;
+            $data['colleges'][] = $val;
         }
     }else{
         //if(!in_array($values['resultCollege'],$data['colleges']))
-            $data['colleges'][] = $values['resultCollege'];
-        break;
+        $data['colleges'][] = $values['resultCollege'];
     }
 
 }
-
 $newarr = array_count_values( $data['colleges']);
 
 echo json_encode($newarr,JSON_FORCE_OBJECT);
